@@ -21,6 +21,25 @@ export const usuarioController = {
   deletar: async (req, res) => {
     await usuarioService.deletar(req.params.id);
     res.status(204).send();
+  },
+  buscarEndereco: async (req, res) => {
+    const usuario = await usuarioService.buscarEndereco(req.params.id);
+    res.json(usuario.endereco);
+  },
+
+  buscarExperiencias: async (req, res) => {
+    const usuario = await usuarioService.buscarExperiencias(req.params.id);
+    res.json(usuario.experiencias);
+  },
+
+  buscarHabilidades: async (req, res) => {
+    const usuario = await usuarioService.buscarHabilidades(req.params.id);
+    res.json(usuario.habilidades);
+  },
+
+  buscarCompleto: async (req, res) => {
+    const usuario = await usuarioService.buscarCompleto(req.params.id);
+    res.json(usuario);
   }
 };
 

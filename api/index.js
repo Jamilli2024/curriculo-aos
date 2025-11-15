@@ -31,17 +31,23 @@ app.use("/habilidades", router.habilidadesRoutes)
 sequelize
   .authenticate()
   .then(() => {
-    console.log("✅ Conexão com o banco de dados estabelecida com sucesso.");
-    
-  return sequelize.sync({ alter: true });
+    console.log("Conexão com o banco estabelecida.");
+
+    if (process.env.SYNC_DB === "true") {
+      console.log("Rodando sequelize.sync()...");
+      return sequelize.sync({ alter: true });
+    }
+
+    console.log("SYNC_DB está como false — nenhuma mudança será aplicada ao banco.");
+    return Promise.resolve(); // segue sem sincronizar
   })
   .then(() => {
     app.listen(port, () => {
-      console.log(`Servidor rodando na porta ${port}!!!!!!`);
+      console.log(`Servidor rodando na porta ${port}`);
     });
   })
   .catch((error) => {
-    console.error("Não foi possível conectar ao banco de dados:", error);
+    console.error("Erro ao iniciar:", error);
     process.exit(1);
   });
 export default app;
