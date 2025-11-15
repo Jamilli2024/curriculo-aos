@@ -9,9 +9,9 @@ router.get('/:id', user.buscarPorId);
 router.put('/:id', user.atualizar);
 router.delete('/:id', user.deletar);
 
-router.get('/:id/endereco', usuarioController.buscarEndereco);
-router.get('/:id/experiencias', usuarioController.buscarExperiencias);
-router.get('/:id/habilidades', usuarioController.buscarHabilidades);
+router.get('/:id/endereco', user.buscarEndereco);
+router.get('/:id/experiencias', user.buscarExperiencias);
+router.get('/:id/habilidades', user.buscarHabilidades);
 
-router.get('/:id/completo', usuarioController.buscarCompleto);
+router.get('/:id/completo', user.buscarCompleto);
 export default router;
